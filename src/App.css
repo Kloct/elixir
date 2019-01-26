@@ -1,0 +1,96 @@
+.App {
+  text-align: center;
+  background-color: #222;
+}
+.content{
+  background-color: #232934;
+  height: 100%;
+  border-radius: 15px;
+  color: #FFFFFF;
+  padding: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.content-home{
+  background-color: #373f51;
+  color: #FFFFFF;
+  padding: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.item-window{
+  background-color: #051423;
+  border-color: #235970;
+  color: #FFFFFF;
+  font-family: Veranda, Geneva, sans-serif;
+}
+.carousel-content{
+  background: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.background{
+  background-color: #D8DBE2;
+}
+
+h2{
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}
+
+.button{
+  color: white;
+  background-color: #3cc19e;
+  border-radius: 0.5em;
+  border: 2px solid #3cc19e;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  margin-left: 10px;
+}
+.button:hover{
+  background-color: white;
+  color: black;
+}
+.button:focus{
+  background-color: white;
+  color: black;
+}
+.carousel-item > img {
+  max-height: 1000px;
+  width: 100%;
+  overflow: hidden;
+}
+hr {
+  background-color: white;
+  border: none;
+  height: 1px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+table, td, th {
+    padding: 15px;
+}
+
+tr:nth-child(even){background-color: #495060;}
+tr {
+  background-color: #373f51;
+}
+
+tr:hover {background-color: #2e3443;}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #292e3b;
+    color: white;
+}
