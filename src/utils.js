@@ -23,8 +23,11 @@ export function formatString(s){
 	else return ""
 }
 
-export function formatDate(d){
-  d.setHours(d.getHours() + Math.round(d.getMinutes()/60))
-  d.setMinutes(0);
-  return d;
+export function formatDate(s){
+  //s.replace('T', ' ')
+  //s.replace('.000Z', '')
+  s.split(/[- :]/);
+  var d = new Date(Date.UTC(s[0], s[1]-1, s[2], s[3], s[4], s[5]));
+  //return(new Date(d));
+  return(d)
 }

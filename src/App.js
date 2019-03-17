@@ -5,7 +5,9 @@ import BrokerAnalytics from './layouts/BrokerAnalytics';
 import Home from './layouts/Home';
 import ItemsDB from './layouts/ItemsDB';
 import NavBar from './components/navBar';
+import { defaults } from 'react-chartjs-2';
 
+defaults.global.defaultFontColor='white';
 
 class App extends Component {
 

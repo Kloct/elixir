@@ -49,7 +49,7 @@ export default class BrokerAnalytics extends React.Component {
             label: "Price/Quantity Over Time",
             backgroundColor: colorPicker().c
           }],
-          labels: data.sales.map(data => {return data.time}),
+          labels: data.sales.map(data => {return formatDate(data.time)}),
         },
         QoT: {
           datasets: [{
@@ -57,13 +57,13 @@ export default class BrokerAnalytics extends React.Component {
             label: "Quantity Sold Over Time",
             backgroundColor: colorPicker().c
           }],
-          labels: data.sales.map(data => {return data.time}),
+          labels: data.sales.map(data => {return formatDate(data.time)}),
         },
         topSellers: {
           datasets: [{
             data: data.topN.map(data => {return data.quantity}),
             backgroundColor: data.topN.map(element => {return colorPicker().c}),
-            borderColor: data.topN.map(data => {return '#232934'})
+            borderColor: '#232934'
           }],
           labels: data.topN.map(data => {return data.name}),
         },

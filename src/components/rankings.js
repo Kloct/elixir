@@ -17,7 +17,8 @@ export default class Rankings extends React.Component {
           chartInfo: {
             datasets:[{
               data: info.map(info => {return info.sales}),
-              backgroundColor: info.map(element => {return colorPicker().c})
+              backgroundColor: info.map(element => {return colorPicker().c}),
+              borderColor: "#232934"
             }],
             labels: info.map(info => {return info.server})
          }
@@ -46,7 +47,7 @@ export default class Rankings extends React.Component {
             <Col align="center">
               <h2>Server Ranking</h2>
               <br/>
-              <Doughnut data={this.state.chartInfo}/>
+              <Doughnut data={this.state.chartInfo} width={200} height={150} options={{maintainAspectRatio: true, layout: {padding: {bottom: 50}}}}/>
               <InfoTable info={this.state.info}/>
             </Col>
             <Col align="center">
