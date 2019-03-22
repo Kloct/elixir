@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import DataForm from '../components/dataForm';
 import '../App.css';
 import { colorPicker, formatDate } from '../utils';
-import { Doughnut, Line, Chart } from 'react-chartjs-2';
+import { Doughnut, Line } from 'react-chartjs-2';
 
 export default class BrokerAnalytics extends React.Component {
   constructor(props){
@@ -76,6 +76,7 @@ export default class BrokerAnalytics extends React.Component {
       console.log(this.state);
     });
   }
+  
   render() {
     return (
       <Container className="content-home">
