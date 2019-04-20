@@ -5,10 +5,16 @@ import SellerTable from '../components/sellerTable';
 import '../App.css';
 import { colorPicker } from '../utils';
 import { Doughnut } from 'react-chartjs-2';
+import WithLoading from './WithLoading';
+
+const SellerTableWithLoading = WithLoading(SellerTable);
+const InfoTableWithLoading = WithLoading(InfoTable);
 
 export default class Rankings extends React.Component {
-  state = { info: [], top: [], serverSelect: "Velika", chartInfo:{} }
+  state = { info: [], top: [], serverSelect: "Velika", chartInfo:{}, serverInfoLoading:false, topNLoading:false}
   componentDidMount(){
+    this.setState({ serverInfoLoading:true })
+    this.setState({ topNLoading:true })
     fetch('/db/serverinfo')
       .then(d => d.json())
       .then(info => {
@@ -23,10 +29,14 @@ export default class Rankings extends React.Component {
             labels: info.map(info => {return info.server})
          }
         })
+        this.setState({ serverInfoLoading:false })
+        console.log(this.state)
     })
     fetch(`/db/topN`)
       .then(data => data.json())
-      .then(top => { this.setState( { top })
+      .then(top => { 
+        this.setState({ top })
+        this.setState({ topNLoading:false })
     })
   }
   changeServer(event) {
@@ -48,12 +58,12 @@ export default class Rankings extends React.Component {
               <h2>Server Ranking</h2>
               <br/>
               <Doughnut data={this.state.chartInfo} width={200} height={150} options={{maintainAspectRatio: true, layout: {padding: {bottom: 50}}}}/>
-              <InfoTable info={this.state.info}/>
+              <InfoTableWithLoading isLoading={this.state.serverInfoLoading} info={this.state.info}/>
             </Col>
             <Col align="center">
               <h2>Seller Ranking</h2>
               <br/>
-              <SellerTable filteredTop={filteredTop} changeServer={this.changeServer.bind(this)}/>
+              <SellerTableWithLoading isLoading={this.state.topNLoading} filteredTop={filteredTop} changeServer={this.changeServer.bind(this)}/>
             </Col>
           </Row>
         </Container>

@@ -18,7 +18,7 @@ export default class InfoTable extends React.Component {
               <tr key={server.server}>
                 <td value={server.server}>{server.server}</td>
                 <td>{server.sales.toLocaleString()}</td>
-                <td>{Math.round(server.value).toLocaleString()}</td>
+                <td>{Math.round(server.values).toLocaleString()}</td>
               </tr>
             )}
           </tbody>

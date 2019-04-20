@@ -3,77 +3,71 @@ import { Container, Row, Col } from 'reactstrap';
 import DataForm from '../components/dataForm';
 import '../App.css';
 import { colorPicker, formatDate } from '../utils';
-import { Doughnut, Line } from 'react-chartjs-2';
+import DataTable from '../components/dataTable';
+import WithLoading from '../components/WithLoading';
+
+const DataTableWithLoading = WithLoading(DataTable);
 
 export default class BrokerAnalytics extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      PdQ: {
-        datasets: [{
-            data: []
-        }],
-        labels: []
-      },
-      QoT: {
-        datasets: [{
-          data: []
-        }],
-        labels: []
-      },
-      topSellers: {
-        datasets: [{
-          data: []
-        }],
-        labels: []
-      },
-      marketInfo:{
-        itemValue: null,
-        totalValue: null
-      }
+      loading:false, 
+      isnull:true,
+      dataTable:{}
     }
   }
-
-  getItemSalesHistory(filters){
+  //filters recevied
+  filtersSubmitted(filters){
+    //started loading
+    this.setState({
+      isnull:false,
+      loading:true,
+      dataTable:{}
+    });
+    // API Call
     fetch('/db/itemSalesHistory', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(filters)
     })
     .then(data => data.json())
+    //done loading
     .then(data => {
-      this.setState({ 
-        PdQ: {
-          datasets: [{
-            data: data.sales.map(data => {return data.price}),
-            label: "Price/Quantity Over Time",
-            backgroundColor: colorPicker().c
-          }],
-          labels: data.sales.map(data => {return formatDate(data.time)}),
-        },
-        QoT: {
-          datasets: [{
-            data: data.sales.map(data => {return data.quantity}),
-            label: "Quantity Sold Over Time",
-            backgroundColor: colorPicker().c
-          }],
-          labels: data.sales.map(data => {return formatDate(data.time)}),
-        },
-        topSellers: {
-          datasets: [{
-            data: data.topN.map(data => {return data.quantity}),
-            backgroundColor: data.topN.map(element => {return colorPicker().c}),
-            borderColor: '#232934'
-          }],
-          labels: data.topN.map(data => {return data.name}),
-        },
-        marketInfo: {
-          itemValue: data.itemMarketValue[0].total,
-          totalValue: data.marketValue[0].total
+      this.setState({
+        loading:false, 
+        isnull:false,
+        dataTable:{
+          PdQ: {
+            datasets: [{
+              data: data.sales.map(data => {return data.price}),
+              label: "Price/Quantity Over Time",
+              backgroundColor: colorPicker().c
+            }],
+            labels: data.sales.map(data => {return formatDate(data.time)}),
+          },
+          QoT: {
+            datasets: [{
+              data: data.sales.map(data => {return data.quantity}),
+              label: "Quantity Sold Over Time",
+              backgroundColor: colorPicker().c
+            }],
+            labels: data.sales.map(data => {return formatDate(data.time)}),
+          },
+          topSellers: {
+            datasets: [{
+              data: data.topN.map(data => {return data.quantity}),
+              backgroundColor: data.topN.map(element => {return colorPicker().c}),
+              borderColor: '#232934'
+            }],
+            labels: data.topN.map(data => {return data.name}),
+          },
+          marketInfo: {
+            itemValue: data.itemMarketValue[0].total,
+            totalValue: data.marketValue[0].total
+          },
         }
       });
-      console.log('state:')
-      console.log(this.state);
     });
   }
   
@@ -83,17 +77,13 @@ export default class BrokerAnalytics extends React.Component {
         <br /><br />
         <Container className="content">
           <h3>Filters</h3>
-          <DataForm onSubmit={filters => this.getItemSalesHistory(filters)}/>
+          <DataForm onSubmit={filters => this.filtersSubmitted(filters)}/>
         </Container>
         <br />
         <Container className="content">
         <Row>
           <Col>
-            <Doughnut data={this.state.topSellers} />
-            <Line data={this.state.PdQ} />
-            <Line data={this.state.QoT} />
-            <h4>Value: {Math.round(this.state.marketInfo.itemValue/10000).toLocaleString()}</h4>
-            <h4>{Math.round((this.state.marketInfo.itemValue/this.state.marketInfo.totalValue)*10000)/100}% of total market</h4>
+            <DataTableWithLoading isLoading={this.state.loading} isnull={this.state.isnull} dataTable={this.state.dataTable}/>
           </Col>
         </Row>
         </Container>
