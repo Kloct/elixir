@@ -26,12 +26,6 @@ const items = [
     altText: 'LEADERBOARDS',
     tagLine: 'Server and character broker rankings.',
     caption: 'LEADERBOARDS'
-  },
-  {
-    src: 'assets/TERA_ConceptArt(73).jpg',
-    altText: 'ROADMAP',
-    tagLine: 'Adding new features all the time. Check the Roadmap to see what\'s next.',
-    caption: 'ROADMAP'
   }
 ];
 
