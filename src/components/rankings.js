@@ -59,6 +59,8 @@ export default class Rankings extends React.Component {
               <br/>
               <Doughnut data={this.state.chartInfo} width={200} height={150} options={{maintainAspectRatio: true, layout: {padding: {bottom: 50}}}}/>
               <InfoTableWithLoading isLoading={this.state.serverInfoLoading} info={this.state.info}/>
+              <br/>
+              <p>*** Data updated at least weekly</p>
             </Col>
             <Col align="center">
               <h2>Seller Ranking</h2>

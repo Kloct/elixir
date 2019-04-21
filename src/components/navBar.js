@@ -8,10 +8,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  Badge } from 'reactstrap';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -32,36 +29,20 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar style={{backgroundColor: '#1b1b1e'}} dark expand="md" fixed="top">
-          <NavbarBrand href="/">Heaven's Elixir ᴾᴿᴱ⁻ᴬᴸᴾᴴᴬ</NavbarBrand>
+          <NavbarBrand href="/">Heaven's Elixir</NavbarBrand><Badge color="light" pill>ALPHA v1.0</Badge>
+
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/ItemsDB/">ItemsDB</NavLink>
+                <NavLink href="/ItemsDB/">ItemDB</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/BrokerAnalytics/">Broker Analytics</NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Account
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Profile
-                  </DropdownItem>
-                  <DropdownItem>
-                    Logout
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Donate
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              <NavItem>
+                <NavLink href="/">Discord</NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

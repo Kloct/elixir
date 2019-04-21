@@ -10,22 +10,28 @@ import {
 
 const items = [
   {
+    src: 'assets/TERA_ConceptArt(0).jpg',
+    altText: 'Alpha v1.0',
+    tagLine: 'Welcome to the Heaven\'s Elixir Alpha! Check out the Roadmap for more info.',
+    caption: 'Alpha v1.0'
+  },
+  {
     src: 'assets/TERA_ConceptArt(67).jpg',
     altText: 'BROKER ANALYTICS',
-    tagLine: 'Graphs. Trends. Economy',
+    tagLine: 'Graphs. Trends. Economy.',
     caption: 'BROKER ANALYTICS'
   },
   {
     src: 'assets/TERA_ConceptArt(70).jpg',
-    altText: 'ITEM DATABASE',
-    tagLine: 'Complete Item Database',
-    caption: 'ITEM DATABASE'
+    altText: 'LEADERBOARDS',
+    tagLine: 'Server and character broker rankings.',
+    caption: 'LEADERBOARDS'
   },
   {
     src: 'assets/TERA_ConceptArt(73).jpg',
-    altText: 'WEB BASED REMOTE LOGIN',
-    tagLine: 'Claim Dailies. Chat with Friends. Use the Broker',
-    caption: 'WEB BASED REMOTE LOGIN'
+    altText: 'ROADMAP',
+    tagLine: 'Adding new features all the time. Check the Roadmap to see what\'s next.',
+    caption: 'ROADMAP'
   }
 ];
 

@@ -2,12 +2,20 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ItemSearchForm from '../components/itemSearchForm';
 import '../App.css';
-import { formatString } from '../utils';
+import WithLoading from '../components/WithLoading';
+import ItemTable from '../components/itemTable';
+
+const ItemTableWithLoading = WithLoading(ItemTable);
 
 export default class ItemsDB extends React.Component {
-  state = { items:[] }
+  state = { items:[], loading:false, isnull:true}
 
   itemSearch(search){
+    this.setState({
+      items:[],
+      loading:true,
+      isnull:false
+    })
     fetch('/db/itemSearch', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
@@ -15,7 +23,11 @@ export default class ItemsDB extends React.Component {
     })
     .then(data => data.json())
     .then(items => {
-      this.setState({ items });
+      this.setState({ 
+        items:items,
+        loading:false,
+        isnull:false
+       });
     })
   }
   render() {
@@ -29,24 +41,7 @@ export default class ItemsDB extends React.Component {
         </Row>
         <Row>
           <Col>
-            <table>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>name</th>
-                  <th>tooltip</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.items.map(item =>
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.string}</td>
-                    <td dangerouslySetInnerHTML={{__html: formatString(item.toolTip)}} />
-                  </tr>
-                )}
-              </tbody>
-            </table>
+            <ItemTableWithLoading isLoading={this.state.loading} isnull={this.state.isnull} items={this.state.items}/>
           </Col>
         </Row>
       </Container>

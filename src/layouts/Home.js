@@ -13,6 +13,7 @@ export default class Home extends React.Component {
           <Row>
             <Col align="center">
               <br /><br />
+              
               <Carousel />
               <br/>
             </Col>
@@ -20,12 +21,12 @@ export default class Home extends React.Component {
           <div className="content">
             <Row>
               <Col>
-                <HomeMedia icon="fa fa-database" heading="ItemsDB" content="Search for information on items in the game. Find where to get them and view their current value in the marketplace."/>
-                <HomeMedia icon="fa fa-rss" heading="Remote Login (Comming Soon)" content="Log in to your characters remotely. Access the trade broker, chat with your friends, and claim your daily login rewards."/>
+                <HomeMedia icon="fa fa-bar-chart" heading="Broker Analytics" content="See whose selling what and track the items that you want over time. Discover market trends and use them to further you economic pursuits!"/>
+                <HomeMedia icon="fa fa-trophy" heading="Leaderboards" content="View which server has the greatest market value and which players are the most active on the trade broker."/>
               </Col>
               <Col>
-                <HomeMedia icon="fa fa-bar-chart" heading="Broker Tracking" content="See whose selling what and track the items that you want over time. Discover market trends and use them to further you economic pursuits!"/>
-                <HomeMedia icon="fa fa-android" heading="App Integration (Comming Soon)" content="Search for items, monitor the trade broker and log in to your characters remotely all from the mobile app."/>
+                <HomeMedia icon="fa fa-database" heading="Item Database" content="Search for information on items in the game. Find where to get them and view their current value in the marketplace."/>
+                <HomeMedia icon="fa fa-server" heading="Still More to Come!" content="This site is still in the early stages of development and there are many more features to come. Visit the Heaven's Elixir Discord to learn more."/>
               </Col>
             </Row>
           </div>

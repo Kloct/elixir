@@ -22,9 +22,6 @@ class App extends Component {
           <Route exact path="/ItemsDB" component={ItemsDB} />
         </div>
       </Router>
-
-
-
     );
   }
 }
