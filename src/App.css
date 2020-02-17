@@ -94,3 +94,4 @@ th {
     background-color: #292e3b;
     color: white;
 }
+svg > g > g:last-child { pointer-events: none }

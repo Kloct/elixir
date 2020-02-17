@@ -38,34 +38,15 @@ export default class BrokerAnalytics extends React.Component {
         loading:false, 
         isnull:false,
         dataTable:{
-          PdQ: {
-            datasets: [{
-              data: data.sales.map(data => {return data.price}),
-              label: "Price/Quantity Over Time",
-              backgroundColor: colorPicker().c
-            }],
-            labels: data.sales.map(data => {return formatDate(data.time)}),
-          },
-          QoT: {
-            datasets: [{
-              data: data.sales.map(data => {return data.quantity}),
-              label: "Quantity Sold Over Time",
-              backgroundColor: colorPicker().c
-            }],
-            labels: data.sales.map(data => {return formatDate(data.time)}),
-          },
-          topSellers: {
-            datasets: [{
-              data: data.topN.map(data => {return data.quantity}),
-              backgroundColor: data.topN.map(element => {return colorPicker().c}),
-              borderColor: '#232934'
-            }],
-            labels: data.topN.map(data => {return data.name}),
-          },
+          filters,
           marketInfo: {
             itemValue: data.itemMarketValue[0].total,
-            totalValue: data.marketValue[0].total
+            totalValue: data.marketValue[0].total,
+            avgPrice: Math.round(data.sales.reduce((total, num)=> total + num.price , 0)/data.sales.length)
           },
+          topSellersData: data.topN.map(data => [data.name, data.quantity]),
+          PdQNew: data.sales.map(sale => [new Date(sale.time*1000), sale.price]),
+          QoTNew: data.sales.map(sale => [new Date(sale.time*1000), sale.quantity])
         }
       });
     });
@@ -81,11 +62,7 @@ export default class BrokerAnalytics extends React.Component {
         </Container>
         <br />
         <Container className="content">
-        <Row>
-          <Col>
-            <DataTableWithLoading isLoading={this.state.loading} isnull={this.state.isnull} dataTable={this.state.dataTable}/>
-          </Col>
-        </Row>
+          <DataTableWithLoading isLoading={this.state.loading} isnull={this.state.isnull} dataTable={this.state.dataTable}/>
         </Container>
       </Container>
     );

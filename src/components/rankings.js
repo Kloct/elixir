@@ -4,11 +4,12 @@ import InfoTable from '../components/infoTable';
 import SellerTable from '../components/sellerTable';
 import '../App.css';
 import { colorPicker } from '../utils';
-import { Doughnut } from 'react-chartjs-2';
+import { Chart } from 'react-google-charts';
 import WithLoading from './WithLoading';
 
 const SellerTableWithLoading = WithLoading(SellerTable);
 const InfoTableWithLoading = WithLoading(InfoTable);
+const ChartWithLoading = WithLoading(Chart);
 
 export default class Rankings extends React.Component {
   state = { info: [], top: [], serverSelect: "Velika", chartInfo:{}, serverInfoLoading:false, topNLoading:false}
@@ -20,17 +21,13 @@ export default class Rankings extends React.Component {
       .then(info => {
         this.setState({ info });
         this.setState({
-          chartInfo: {
-            datasets:[{
-              data: info.map(info => {return info.sales}),
-              backgroundColor: info.map(element => {return colorPicker().c}),
-              borderColor: "#232934"
-            }],
-            labels: info.map(info => {return info.server})
-         }
+          chartInfo: [
+            ["Server", "Sales"], 
+            ...info.map(info=>[info.server, info.sales])
+          ]
         })
         this.setState({ serverInfoLoading:false })
-        console.log(this.state)
+        console.log(colorPicker())
     })
     fetch(`/db/topN`)
       .then(data => data.json())
@@ -57,10 +54,24 @@ export default class Rankings extends React.Component {
             <Col align="center">
               <h2>Server Ranking</h2>
               <br/>
-              <Doughnut data={this.state.chartInfo} width={200} height={150} options={{maintainAspectRatio: true, layout: {padding: {bottom: 50}}}}/>
+              <ChartWithLoading
+                isLoading={this.state.topNLoading}
+                height="500px"
+                chartType="PieChart"
+                data={this.state.chartInfo}
+                options={{
+                  chartArea: {width: '80%', height: '80%'},
+                  pieHole: 0.5,
+                  backgroundColor: '#232934',
+                  pieSliceBorderColor: '#232934',
+                  pieSliceText: 'none',
+                  legend: {position: 'top', textStyle:{color:'white'}},
+                  toolTip: {text: 'value'}
+                }}
+              />
               <InfoTableWithLoading isLoading={this.state.serverInfoLoading} info={this.state.info}/>
               <br/>
-              <p>*** Data updated at least weekly</p>
+              <p>*** Data updated hourly ***</p>
             </Col>
             <Col align="center">
               <h2>Seller Ranking</h2>
