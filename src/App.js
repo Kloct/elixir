@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import BrokerAnalytics from './layouts/BrokerAnalytics';
-import Forum from './layouts/Forum';
+import ChangeLog from './layouts/ChangeLog';
 import Home from './layouts/Home';
 import ItemsDB from './layouts/ItemsDB';
 import NavBar from './components/navBar';
+import Items from './layouts/Items';
+import Market from './layouts/Market';
 
 class App extends Component {
 
@@ -16,9 +17,10 @@ class App extends Component {
         <div>
           <NavBar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/BrokerAnalytics" component={BrokerAnalytics} />
-          <Route exact path="/ItemsDB" component={ItemsDB} />
-          <Route exact path="/Forum" component={Forum} />
+          <Route exact path="/items" component={Items} />
+          <Route exact path="/market" component={Market} />
+          <Route exact path="/itemsDB" component={ItemsDB} />
+          <Route exact path="/changelog" component={ChangeLog} />
         </div>
       </Router>
     );

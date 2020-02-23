@@ -87,6 +87,8 @@ tr {
 
 tr:hover {background-color: #2e3443;}
 
+button.dropdown-item:hover {background-color: #2e3443;}
+
 th {
     padding-top: 12px;
     padding-bottom: 12px;

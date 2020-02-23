@@ -1,14 +1,13 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import DataForm from '../components/dataForm';
+import DataFormMarket from '../components/dataFormMarket';
 import '../App.css';
-import { colorPicker, formatDate } from '../utils';
-import DataTable from '../components/dataTable';
+import MarketTable from '../components/marketTable';
 import WithLoading from '../components/WithLoading';
 
-const DataTableWithLoading = WithLoading(DataTable);
+const MarketTableWithLoading = WithLoading(MarketTable);
 
-export default class BrokerAnalytics extends React.Component {
+export default class Market extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -26,7 +25,7 @@ export default class BrokerAnalytics extends React.Component {
       dataTable:{}
     });
     // API Call
-    fetch('/db/itemSalesHistory', {
+    fetch('/db/marketTree', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(filters)
@@ -37,16 +36,9 @@ export default class BrokerAnalytics extends React.Component {
       this.setState({
         loading:false, 
         isnull:false,
-        dataTable:{
+        dataTable: {
           filters,
-          marketInfo: {
-            itemValue: data.itemMarketValue[0].total,
-            totalValue: data.marketValue[0].total,
-            avgPrice: Math.round(data.sales.reduce((total, num)=> total + num.price , 0)/data.sales.length)
-          },
-          topSellersData: data.topN.map(data => [data.name, data.quantity]),
-          PdQNew: data.sales.map(sale => [new Date(sale.time*1000), sale.price]),
-          QoTNew: data.sales.map(sale => [new Date(sale.time*1000), sale.quantity])
+          marketTree: data
         }
       });
     });
@@ -58,11 +50,11 @@ export default class BrokerAnalytics extends React.Component {
         <br /><br />
         <Container className="content">
           <h3>Filters</h3>
-          <DataForm onSubmit={filters => this.filtersSubmitted(filters)}/>
+          <DataFormMarket onSubmit={filters => this.filtersSubmitted(filters)}/>
         </Container>
         <br />
         <Container className="content">
-          <DataTableWithLoading isLoading={this.state.loading} isnull={this.state.isnull} dataTable={this.state.dataTable}/>
+          <MarketTableWithLoading isLoading={this.state.loading} isnull={this.state.isnull} dataTable={this.state.dataTable}/>
         </Container>
       </Container>
     );

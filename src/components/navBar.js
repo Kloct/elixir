@@ -8,7 +8,12 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Badge } from 'reactstrap';
+  Badge,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -29,22 +34,35 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar style={{backgroundColor: '#1b1b1e'}} dark expand="md" fixed="top">
-          <NavbarBrand href="/">Heaven's Elixir</NavbarBrand><Badge color="light" pill>ALPHA v1.0</Badge>
+          <NavbarBrand href="/">Heaven's Elixir</NavbarBrand><Badge color="light" pill>ALPHA v1.1</Badge>
 
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/ItemsDB/">ItemDB</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/BrokerAnalytics/">Broker Analytics</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/Forum/">Forum</NavLink>
-              </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Broker Analytics
+                </DropdownToggle>
+                <DropdownMenu style={{backgroundColor: '#1b1b1e'}} right>
+                  <DropdownItem className="dropdown-item">
+                    <NavLink href="/Market/">Market</NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/Items/">Items</NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/Sellers/">Sellers</NavLink>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
               <NavItem>
                 <NavLink href="/">Discord</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/ItemsDB/">ItemsDB</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/ChangeLog/">Change Log</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

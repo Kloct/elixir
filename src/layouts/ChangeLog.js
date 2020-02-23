@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-export default class Forum extends React.Component {
+export default class ChangeLog extends React.Component {
   render() {
     return (
       <Container className="content-home">

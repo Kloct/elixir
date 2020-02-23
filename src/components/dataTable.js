@@ -3,7 +3,7 @@ import '../App.css';
 import { Chart } from "react-google-charts";
 import {Row, Col } from 'reactstrap';
 
-export default class BrokerAnalytics extends React.Component {
+export default class DataTable extends React.Component {
   
   render() {
     console.log(this.props.dataTable.topSellersData)
