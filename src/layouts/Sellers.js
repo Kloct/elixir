@@ -1,22 +1,19 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import DataFormMarket from '../components/dataFormMarket';
+import DataFormSellers from '../components/dataFormSellers';
 import '../App.css';
-import MarketTable from '../components/marketTable';
+import SellersTable from '../components/sellersTable';
 import WithLoading from '../components/WithLoading';
-import { quantile } from 'd3';
 
-const MarketTableWithLoading = WithLoading(MarketTable);
+const SellersTableWithLoading = WithLoading(SellersTable);
 
-export default class Market extends React.Component {
+export default class Sellers extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      treeLoading:false, 
-      treeNull:true,
-      topNLoading:false,
-      topNNull:true,
-      marketData: {
+      sellerLoading:false,
+      sellerNull:true,
+      sellerData: {
         marketTree: {},
         topN: {}
       }
@@ -26,17 +23,20 @@ export default class Market extends React.Component {
   filtersSubmitted(filters){
     //started loading
     this.setState({
-      treeNull:false,
-      treeLoading:true,
-      topNNull:false,
-      topNLoading:true,
-      marketData: {
-        marketTree: {},
-        topN: {}
+      sellersNull:false,
+      sellersLoading:true,
+      sellersData: {
+        filters
       }
     });
+    console.log(this.state)
+    this.setState({
+      sellersLoading:false,
+      sellersNull:false
+
+    })
     // API Call
-    fetch('/db/marketTable', {
+    /*fetch('/db/marketTree', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(filters)
@@ -56,7 +56,7 @@ export default class Market extends React.Component {
           topItems: data.topItems.map(item=>[item.string, {v: item.total, f: `<font color="gold">${Math.round(item.total).toLocaleString()}g</font>`}, item.quantity])
         }
       }));
-    });
+    });*/
   }
   
   render() {
@@ -65,11 +65,11 @@ export default class Market extends React.Component {
         <br /><br />
         <Container className="content">
           <h3>Filters</h3>
-          <DataFormMarket onSubmit={filters => this.filtersSubmitted(filters)}/>
+          <DataFormSellers onSubmit={filters => this.filtersSubmitted(filters)}/>
         </Container>
         <br />
         <Container className="content">
-          <MarketTableWithLoading isLoading={this.state.treeLoading} isnull={this.state.treeNull} marketData={this.state.marketData}/>
+          <SellersTableWithLoading isLoading={this.state.sellersLoading} isnull={this.state.sellersNull} sellersData={this.state.sellersData}/>
         </Container>
       </Container>
     );

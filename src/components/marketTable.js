@@ -6,52 +6,109 @@ import {Row, Col } from 'reactstrap';
 export default class MarketTable extends React.Component {
   
   render() {
-    let testData = [
-      [ 'Card Fragment - Temple of Dagon', 'Cards', 35000 ],
-      [ 'Card Fragment - Vampir Jester', 'Cards', 10000.0005 ],
-      [ 'Card Fragment - Verrak Fortress', 'Cards', 24355.556 ],
-      [ 'Card Fragment - Zolyn', 'Cards', 62500.002 ]
-    ]
-    console.log(this.props)
+    console.log(this.props.marketData)
     return (
       <div>
+        <Row>
+          <Col>
+            <h1 align="center">{this.props.marketData.filters.server}</h1>
+            <p align="center">{this.props.marketData.filters.startDate} - {this.props.marketData.filters.endDate}</p>
+          </Col>
+          <Col>
+            <h4 align="center">Market Value: <font color="gold">{Math.round(this.props.marketData.totals.total).toLocaleString()}g</font></h4>
+            <h6 align="center">Number of Transactions: {this.props.marketData.totals.listings.toLocaleString()}</h6>
+          </Col>
+        </Row>
+        <hr/>
         <Chart
+          height="1000px"
           chartType="TreeMap"
+          data={this.props.marketData.marketTree}
+          options={{
+            maxDepth: 1,
+            maxPostDepth: 2,
+            fontFamily: 'sans-serif',
+            fontSide: '20',
+            minHighlightColor: '#8c6bb1',
+            midHighlightColor: '#9ebcda',
+            maxHighlightColor: '#edf8fb',
+            minColor: '#009688',
+            midColor: '#f7f7f7',
+            maxColor: '#ee8100',
+            headerColor: '#ffffff', 
+            background: '#232934'
+          }}
+        />
+        <hr/>
+        <Chart
+          chartType="Table"
           data={[
             [
-              'Location',
-              'Parent',
-              'Market trade volume (size)',
-              'Market increase/decrease (color)',
+              {type: 'string', label: 'Item'},
+              {type: 'number', label: 'Total Gold'},
+              {type: 'number', label: 'Total Sold'}
             ],
-            ['Global', null, 0, 0],
-            ['America', 'Global', 0, 0],
-            ['Europe', 'Global', 0, 0],
-            ['Asia', 'Global', 0, 0],
-            ['Australia', 'Global', 0, 0],
-            ['Africa', 'Global', 0, 0],
-            ['Brazil', 'America', 11, 10],
-            ['USA', 'America', 52, 31],
-            ['Mexico', 'America', 24, 12],
-            ['Canada', 'America', 16, -23],
-            ['France', 'Europe', 42, -11],
-            ['Germany', 'Europe', 31, -2],
-            ['Sweden', 'Europe', 22, -13],
-            ['Italy', 'Europe', 17, 4],
-            ['UK', 'Europe', 21, -5],
-            ['China', 'Asia', 36, 4],
-            ['Japan', 'Asia', 20, -12],
-            ['India', 'Asia', 40, 63],
-            ['Laos', 'Asia', 4, 34],
-            ['Mongolia', 'Asia', 1, -5],
-            ['Iran', 'Asia', 18, 13],
-            ['Pakistan', 'Asia', 11, -52],
-            ['Egypt', 'Africa', 21, 0],
-            ['S. Africa', 'Africa', 30, 43],
-            ['Sudan', 'Africa', 12, 2],
-            ['Congo', 'Africa', 10, 12],
-            ['Zaire', 'Africa', 8, 10],
+            ...this.props.marketData.topItems
           ]}
+          options={{
+            page: 'enable',
+            width: '100%',
+            allowHtml: true,
+            cssClassNames: {
+              headerRow: 'DataTable',
+              tableRow: 'DataTable',
+              oddTableTow: 'DataTable',
+              headerCell: 'DataTable',
+              tableCell: 'DataTable'
+            }
+          }}
+        />
+        <hr/>
+        <Chart
+          height="500px"
+          chartType="LineChart"
+          data={[['x', 'Quantity'], ...this.props.marketData.quantities]}
+          options={{
+            chartArea: {width: '80%', height: '50%'},
+            title: "Transactions Over Time",
+            titleTextStyle: {color:'white', fontSize: 20},
+            backgroundColor: '#232934',
+            hAxis: {
+              title: 'Time',
+              titleTextStyle: {color: 'white'},
+              textStyle: {color: 'white'},
+              gridlines: { color: 'black' },
+              slantedText: true,
+              showTextEvery: 4
+            },
+            vAxis: {
+              title: 'Number of Transactions',
+              titleTextStyle: {color: 'white'},
+              textStyle: {color: 'white'},
+              gridlines: { color: 'black' }
+            },
+            legend: {
+              position: 'top',
+              textStyle: {color: 'white'}
+            }
+          }}
+        />
+        <hr/>
+        <Chart
+          height="500px"
+          chartType="PieChart"
+          data={[["Player", "Revenue"], ...this.props.marketData.topSellers]}
+          options={{
+            chartArea: {width: '80%', height: '80%'},
+            title: `Top Sellers of ${this.props.marketData.filters.server} (${this.props.marketData.filters.startDate} - ${this.props.marketData.filters.endDate})`,
+            titleTextStyle: {color:'white', fontSize: 20},
+            pieHole: 0.5,
+            backgroundColor: '#232934',
+            pieSliceBorderColor: '#232934',
+            pieSliceText: 'none',
+            legend: {position: 'left', textStyle:{color:'white'}},
+            toolTip: {text: 'value'}
+          }}
         />
       </div>
     );

@@ -7,6 +7,7 @@ import ItemsDB from './layouts/ItemsDB';
 import NavBar from './components/navBar';
 import Items from './layouts/Items';
 import Market from './layouts/Market';
+import Sellers from './layouts/Sellers';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/items" component={Items} />
           <Route exact path="/market" component={Market} />
+          <Route exact path="/sellers" component={Sellers} />
           <Route exact path="/itemsDB" component={ItemsDB} />
           <Route exact path="/changelog" component={ChangeLog} />
         </div>
