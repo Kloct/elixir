@@ -5,7 +5,7 @@ import '../App.css';
 export default class DataFormSellers extends React.Component {
   state = {
     server: 'Velika',
-    player: '',
+    name: '',
     startDate:'',
     endDate:''
   }
@@ -21,8 +21,8 @@ export default class DataFormSellers extends React.Component {
     <Form onSubmit={this.handleSubmit}><Row>
         <Col>
           <FormGroup>
-            <Label for="player">Player</Label>
-            <Input name="player" id="player" type="search" placeholder="enter a players name" value={this.state.player} onChange={e => this.handleChange(e)}/>
+            <Label for="name">Character Name</Label>
+            <Input name="name" id="name" type="search" placeholder="enter a character name" value={this.state.name} onChange={e => this.handleChange(e)}/>
           </FormGroup>
         </Col>
         <Col>

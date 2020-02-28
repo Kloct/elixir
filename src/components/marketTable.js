@@ -15,7 +15,7 @@ export default class MarketTable extends React.Component {
             <p align="center">{this.props.marketData.filters.startDate} - {this.props.marketData.filters.endDate}</p>
           </Col>
           <Col>
-            <h4 align="center">Market Value: <font color="gold">{Math.round(this.props.marketData.totals.total).toLocaleString()}g</font></h4>
+            <h4 align="center" style={{paddingTop: '20px'}}>Market Value: <font color="gold">{Math.round(this.props.marketData.totals.total).toLocaleString()}g</font></h4>
             <h6 align="center">Number of Transactions: {this.props.marketData.totals.listings.toLocaleString()}</h6>
           </Col>
         </Row>

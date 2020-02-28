@@ -11,12 +11,9 @@ export default class Sellers extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      sellerLoading:false,
-      sellerNull:true,
-      sellerData: {
-        marketTree: {},
-        topN: {}
-      }
+      sellersLoading:false,
+      sellersNull:true,
+      sellersData: {}
     }
   }
   //filters recevied
@@ -25,18 +22,11 @@ export default class Sellers extends React.Component {
     this.setState({
       sellersNull:false,
       sellersLoading:true,
-      sellersData: {
-        filters
-      }
+      sellersData: {}
     });
-    console.log(this.state)
-    this.setState({
-      sellersLoading:false,
-      sellersNull:false
-
-    })
+    console.log(filters)
     // API Call
-    /*fetch('/db/marketTree', {
+    fetch('/db/sellerTable', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(filters)
@@ -44,19 +34,21 @@ export default class Sellers extends React.Component {
     .then(data => data.json())
     //done loading
     .then(data => {
-      this.setState(Object.assign(this.state, {
-        treeLoading:false, 
-        treeNull:false,
-        marketData: {
+      this.setState({
+        sellersNull:false,
+        sellersLoading:false,
+        sellersData: {
           filters,
-          marketTree: data.marketTree,
-          quantities: data.quantities.map(hour=>[new Date(hour[0]*1000), hour[1]]),
-          totals: data.totals,
-          topSellers: data.topSellers.map(seller=>[seller.name, seller.total]),
-          topItems: data.topItems.map(item=>[item.string, {v: item.total, f: `<font color="gold">${Math.round(item.total).toLocaleString()}g</font>`}, item.quantity])
+          revenue: data.revenue,
+          rank: data.rank,
+          percentage: data.percentage,
+          sellersTree: data.sellersTree,
+          sellersItems: data.sellersItems.map(item=>[item.string, {v: item.total, f: `<font color="gold">${Math.round(item.total).toLocaleString()}g</font>`}, item.quantity]),
+          quantities: data.quantities.map(hour=>[new Date(hour[0]*1000), hour[1]])
         }
-      }));
-    });*/
+      });
+      console.log(this.state)
+    });
   }
   
   render() {
