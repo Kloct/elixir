@@ -7,7 +7,6 @@ import { colorPicker } from '../utils';
 import { Chart } from 'react-google-charts';
 import WithLoading from './WithLoading';
 
-const SellerTableWithLoading = WithLoading(SellerTable);
 const InfoTableWithLoading = WithLoading(InfoTable);
 const ChartWithLoading = WithLoading(Chart);
 
@@ -36,23 +35,15 @@ export default class Rankings extends React.Component {
         this.setState({ topNLoading:false })
     })
   }
-  changeServer(event) {
-    this.setState({serverSelect: event.target.value});
-  }
 
   render() {
-    let filteredTop = this.state.top.filter(
-      (server) => {
-        return server.server.indexOf(this.state.serverSelect) !== -1;
-      }
-    );
     return (
       <div>
         <br />
         <Container className="content">
           <Row>
             <Col align="center">
-              <h2>Server Ranking</h2>
+              <h3 style={{align:'center'}}>Server Statistics</h3>
               <br/>
               <ChartWithLoading
                 isLoading={this.state.topNLoading}
@@ -74,9 +65,9 @@ export default class Rankings extends React.Component {
               <p>*** Data updated hourly ***</p>
             </Col>
             <Col align="center">
-              <h2>Seller Ranking</h2>
+              <h3 style={{align:'center'}}>Top Sellers</h3>
               <br/>
-              <SellerTableWithLoading isLoading={this.state.topNLoading} filteredTop={filteredTop} changeServer={this.changeServer.bind(this)}/>
+              <SellerTable data={this.state.top}/>
             </Col>
           </Row>
         </Container>

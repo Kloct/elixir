@@ -11,15 +11,15 @@ import {
 const items = [
   {
     src: 'assets/TERA_ConceptArt(0).jpg',
-    altText: 'Alpha v1.0',
-    tagLine: 'Welcome to the Heaven\'s Elixir Alpha! Check out the Roadmap for more info.',
-    caption: 'Alpha v1.0'
+    altText: 'Alpha v1.1',
+    tagLine: 'Welcome to the Heaven\'s Elixir Alpha! Check out the Change Log for more info.',
+    caption: 'Alpha v1.1'
   },
   {
     src: 'assets/TERA_ConceptArt(67).jpg',
-    altText: 'BROKER ANALYTICS',
-    tagLine: 'Graphs. Trends. Economy.',
-    caption: 'BROKER ANALYTICS'
+    altText: 'ANALYTICS',
+    tagLine: 'Composition and trend analysys. ',
+    caption: 'ANALYTICS'
   },
   {
     src: 'assets/TERA_ConceptArt(70).jpg',

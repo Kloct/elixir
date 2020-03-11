@@ -36,11 +36,11 @@ export default class SellersTable extends React.Component {
             width: '100%',
             allowHtml: true,
             cssClassNames: {
-              headerRow: 'DataTable',
-              tableRow: 'DataTable',
-              oddTableTow: 'DataTable',
-              headerCell: 'DataTable',
-              tableCell: 'DataTable'
+              headerRow: 'dataTable',
+              tableRow: 'dataTable',
+              oddTableTow: 'dataTable',
+              headerCell: 'dataTable',
+              tableCell: 'dataTable'
             }
           }}
         />
@@ -61,7 +61,15 @@ export default class SellersTable extends React.Component {
             midColor: '#f7f7f7',
             maxColor: '#ee8100',
             headerColor: '#ffffff', 
-            background: '#232934'
+            background: '#232934',
+            generateTooltip: (row, size, value) => {
+              console.log(size)
+              return (
+                `<div style="background:black; padding:10px; color:white; border-radius: 10px">
+                Total Value: <font color="gold">${Math.round(size).toLocaleString()}g</font>
+                </div>`
+              )
+            }
           }}
         />
         <hr/>

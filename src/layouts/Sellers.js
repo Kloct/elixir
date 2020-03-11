@@ -13,8 +13,16 @@ export default class Sellers extends React.Component {
     this.state = {
       sellersLoading:false,
       sellersNull:true,
-      sellersData: {}
+      sellersData: {},
+      sellers: []
     }
+  }
+  componentDidMount(){
+    fetch(`/db/sellerList`)
+      .then(data => data.json())
+      .then(sellers => { 
+        this.setState({ sellers })
+    })
   }
   //filters recevied
   filtersSubmitted(filters){
@@ -57,7 +65,7 @@ export default class Sellers extends React.Component {
         <br /><br />
         <Container className="content">
           <h3>Filters</h3>
-          <DataFormSellers onSubmit={filters => this.filtersSubmitted(filters)}/>
+          <DataFormSellers sellers={this.state.sellers} onSubmit={filters => this.filtersSubmitted(filters)}/>
         </Container>
         <br />
         <Container className="content">

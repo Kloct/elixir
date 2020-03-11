@@ -34,7 +34,7 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar style={{backgroundColor: '#1b1b1e'}} dark expand="md" fixed="top">
-          <NavbarBrand href="/">Heaven's Elixir</NavbarBrand><Badge color="light" pill>ALPHA v1.1</Badge>
+          <NavbarBrand href="/">Arborea Stock Exchange</NavbarBrand><Badge color="light" pill>ALPHA v1.2</Badge>
 
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -55,12 +55,6 @@ export default class Example extends React.Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <NavItem>
-                <NavLink href="/">Discord</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/ItemsDB/">ItemsDB</NavLink>
-              </NavItem>
               <NavItem>
                 <NavLink href="/ChangeLog/">Change Log</NavLink>
               </NavItem>

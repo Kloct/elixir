@@ -5,20 +5,20 @@ export default class InfoTable extends React.Component {
   render() {
     return (
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Server</th>
-              <th>Sales</th>
-              <th>Market Value</th>
-            </tr>
+        <table class="dataTable">
+          <thead class="dataTable">
+            <tr class="dataTable">
+              <th class="dataTable">Server</th>
+              <th class="dataTable">Sales</th>
+              <th class="dataTable">Market Value</th>
+            </tr >
           </thead>
-          <tbody>
+          <tbody class="dataTable">
             {this.props.info.map(server =>
-              <tr key={server.server}>
-                <td value={server.server}>{server.server}</td>
-                <td>{server.sales.toLocaleString()}</td>
-                <td>{Math.round(server.value).toLocaleString()}</td>
+              <tr class="dataTable" key={server.server}>
+                <td class="dataTable" value={server.server}>{server.server}</td>
+                <td class="dataTable">{server.sales.toLocaleString()}</td>
+                <td class="dataTable"><font color="gold">{Math.round(server.value).toLocaleString()}g</font></td>
               </tr>
             )}
           </tbody>

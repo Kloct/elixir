@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import DataForm from '../components/dataForm';
 import '../App.css';
-import { colorPicker, formatDate } from '../utils';
 import DataTable from '../components/dataTable';
 import WithLoading from '../components/WithLoading';
 
@@ -14,8 +13,16 @@ export default class Items extends React.Component {
     this.state = {
       loading:false, 
       isnull:true,
-      dataTable:{}
+      dataTable:{},
+      items: []
     }
+  }
+  componentDidMount(){
+    fetch(`/db/itemList`)
+      .then(data => data.json())
+      .then(items => { 
+        this.setState({ items })
+    })
   }
   //filters recevied
   filtersSubmitted(filters){
@@ -58,7 +65,7 @@ export default class Items extends React.Component {
         <br /><br />
         <Container className="content">
           <h3>Filters</h3>
-          <DataForm onSubmit={filters => this.filtersSubmitted(filters)}/>
+          <DataForm items={this.state.items} onSubmit={filters => this.filtersSubmitted(filters)}/>
         </Container>
         <br />
         <Container className="content">

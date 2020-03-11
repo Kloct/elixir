@@ -19,16 +19,16 @@ export default class Home extends React.Component {
             </Col>
           </Row>
           <div className="content">
-            <Row>
-              <Col>
-                <HomeMedia icon="fa fa-bar-chart" heading="Broker Analytics" content="See whose selling what and track the items that you want over time. Discover market trends and use them to further you economic pursuits!"/>
-                <HomeMedia icon="fa fa-trophy" heading="Leaderboards" content="View which server has the greatest market value and which players are the most active on the trade broker."/>
-              </Col>
-              <Col>
-                <HomeMedia icon="fa fa-database" heading="Item Database" content="Search for information on items in the game. Find where to get them and view their current value in the marketplace."/>
-                <HomeMedia icon="fa fa-server" heading="Still More to Come!" content="This site is still in the early stages of development and there are many more features to come. Visit the Heaven's Elixir Discord to learn more."/>
-              </Col>
-            </Row>
+            <table class="blank">
+              <tr>
+                <td class="blank"><HomeMedia icon="fa fa-bar-chart" heading="Item Statistics" content="Track the value of a particular item over time. Use historical market trends to ensure you're getting the most from every sale"/></td>
+                <td class="blank"><HomeMedia icon="fa fa-trophy" heading="Leaderboards" content="View the top sellers on your server and drill down to find out how they make their money."/></td>
+              </tr>
+              <tr>
+                <td class="blank"><HomeMedia icon="fa fa-cubes" heading="Market Composition" content="See the total composition of a server's market divided into segments over a period of time."/></td>
+                <td class="blank"><HomeMedia icon="fa fa-server" heading="Ongoing Development" content="New features are being added all the time! View the Change Log stay updated on future changes."/></td>
+              </tr>
+            </table>
           </div>
             <Row>
               <Col>
