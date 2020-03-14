@@ -34,7 +34,7 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar style={{backgroundColor: '#1b1b1e'}} dark expand="md" fixed="top">
-          <NavbarBrand href="/">Arborea Stock Exchange</NavbarBrand><Badge color="light" pill>ALPHA v1.2</Badge>
+          <NavbarBrand href="/">Arborea Stock Exchange</NavbarBrand><Badge color="light" pill>ALPHA v1.2.1</Badge>
 
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

@@ -19,15 +19,17 @@ export default class Home extends React.Component {
             </Col>
           </Row>
           <div className="content">
-            <table class="blank">
-              <tr>
-                <td class="blank"><HomeMedia icon="fa fa-bar-chart" heading="Item Statistics" content="Track the value of a particular item over time. Use historical market trends to ensure you're getting the most from every sale"/></td>
-                <td class="blank"><HomeMedia icon="fa fa-trophy" heading="Leaderboards" content="View the top sellers on your server and drill down to find out how they make their money."/></td>
-              </tr>
-              <tr>
-                <td class="blank"><HomeMedia icon="fa fa-cubes" heading="Market Composition" content="See the total composition of a server's market divided into segments over a period of time."/></td>
-                <td class="blank"><HomeMedia icon="fa fa-server" heading="Ongoing Development" content="New features are being added all the time! View the Change Log stay updated on future changes."/></td>
-              </tr>
+            <table className="blank">
+              <tbody>
+                <tr>
+                  <td className="blank"><HomeMedia icon="fa fa-bar-chart" heading="Item Statistics" content="Track the value of a particular item over time. Use historical market trends to ensure you're getting the most from every sale"/></td>
+                  <td className="blank"><HomeMedia icon="fa fa-trophy" heading="Leaderboards" content="View the top sellers on your server and drill down to find out how they make their money."/></td>
+                </tr>
+                <tr>
+                  <td className="blank"><HomeMedia icon="fa fa-cubes" heading="Market Composition" content="See the total composition of a server's market divided into segments over a period of time."/></td>
+                  <td className="blank"><HomeMedia icon="fa fa-server" heading="Ongoing Development" content="New features are being added all the time! View the Change Log stay updated on future changes."/></td>
+                </tr>
+              </tbody>
             </table>
           </div>
             <Row>

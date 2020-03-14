@@ -58,7 +58,7 @@ export default class DataForm extends React.Component {
   }
   handleSubmit = e => {
     let { server, item, startDate, endDate } = this.state
-    if(this.props.sellers.includes(item)==-1) return
+    if(this.props.sellers.includes(item)===-1) return
     else if (item === '' || startDate === '' || endDate === '') return // TODO add message for this
     e.preventDefault();
     this.props.onSubmit({ server, name: item, startDate, endDate })

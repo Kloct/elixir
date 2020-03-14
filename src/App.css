@@ -133,6 +133,7 @@ div.google-visualization-table-div-page.gradient{
 }
 .nav-tabs .nav-link {
   background-color: #495060 !important;
+  cursor: pointer;
 }
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {

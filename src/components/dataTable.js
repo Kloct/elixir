@@ -6,12 +6,11 @@ import {Row, Col } from 'reactstrap';
 export default class DataTable extends React.Component {
   
   render() {
-    console.log(this.props.dataTable.topSellersData)
     return (
       <div>
         <Row>
           <Col>
-            <h1 align="center">{this.props.dataTable.filters.item}</h1>
+            <h1 align="center">{this.props.dataTable.filters.name}</h1>
             <p align="center">{this.props.dataTable.filters.startDate} - {this.props.dataTable.filters.endDate}</p>
           </Col>
           <Col>

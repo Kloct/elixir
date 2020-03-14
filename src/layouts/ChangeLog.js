@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import sourceChangeLog from '../posts/changelog.md'
 import sourceIssues from '../posts/issues.md'
+import sourceAlphaNotes from '../posts/alphaNotes.md'
 
 
 
@@ -11,6 +12,7 @@ export default class ChangeLog extends React.Component {
   state = {
     changelog: null,
     issues: null,
+    alphaNotes: null,
     activeTab: '1'
   }
 
@@ -23,9 +25,13 @@ export default class ChangeLog extends React.Component {
       .then(res => res.text())
       .then(issues => this.setState((state)=>({ ...state, issues })))
       .catch((err)=> console.error(err))
+    fetch(sourceAlphaNotes)
+      .then(res => res.text())
+      .then(alphaNotes => this.setState((state)=>({ ...state, alphaNotes })))
+      .catch((err)=> console.error(err))
   }
   render() {
-    const { issues, changelog, activeTab } = this.state
+    const { issues, changelog, alphaNotes, activeTab } = this.state
     return (
       <Container className="content-home">
         <br /><br />
@@ -46,6 +52,14 @@ export default class ChangeLog extends React.Component {
                 Issues
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: activeTab === '3' })}
+                onClick={()=>this.setState({activeTab: '3' })}
+              >
+                Alpha Notes
+              </NavLink>
+            </NavItem>
           </Nav>
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1">
@@ -58,8 +72,12 @@ export default class ChangeLog extends React.Component {
                 <ReactMarkdown source={issues} />
               </Container>
             </TabPane>
+            <TabPane tabId="3">
+              <Container className="content">
+                <ReactMarkdown source={alphaNotes} />
+              </Container>
+            </TabPane>
           </TabContent>
-        
       </Container>
       );
   }

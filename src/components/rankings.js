@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'reactstrap';
 import InfoTable from '../components/infoTable';
 import SellerTable from '../components/sellerTable';
 import '../App.css';
-import { colorPicker } from '../utils';
 import { Chart } from 'react-google-charts';
 import WithLoading from './WithLoading';
 
@@ -26,7 +25,6 @@ export default class Rankings extends React.Component {
           ]
         })
         this.setState({ serverInfoLoading:false })
-        console.log(colorPicker())
     })
     fetch(`/db/topN`)
       .then(data => data.json())

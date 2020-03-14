@@ -36,36 +36,36 @@ export default class SellerTable extends React.Component {
         </Nav>
         <TabContent activeTab={activeTab}>
           <TabPane tabId='Velika'>
-            <table class="dataTable" style={{boarderTopLeftRadius: 'none'}} id="TopN">
+            <table className="dataTable" style={{boarderTopLeftRadius: 'none'}} id="TopN">
               <thead>
-                <tr class="dataTable">
-                  <th class="dataTable">Character</th>
-                  <th class="dataTable">Revenue</th>
+                <tr className="dataTable">
+                  <th className="dataTable">Character</th>
+                  <th className="dataTable">Revenue</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredTop.map(server =>
-                  <tr class="dataTable">
-                    <td class="dataTable">{server.name}</td>
-                    <td class="dataTable"><font color="gold">{Math.round(server.gold).toLocaleString()}g</font></td>
+                  <tr className="dataTable" key={server.name}>
+                    <td className="dataTable">{server.name}</td>
+                    <td className="dataTable"><font color="gold">{Math.round(server.gold).toLocaleString()}g</font></td>
                   </tr>
                 )}
               </tbody>
             </table>
           </TabPane>
           <TabPane tabId='Kaiator'>
-            <table class="dataTable" id="TopN">
+            <table className="dataTable" id="TopN">
               <thead>
-                <tr class="dataTable">
-                  <th class="dataTable">Character</th>
-                  <th class="dataTable">Revenue</th>
+                <tr className="dataTable">
+                  <th className="dataTable">Character</th>
+                  <th className="dataTable">Revenue</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredTop.map(server =>
-                  <tr class="dataTable">
-                    <td class="dataTable">{server.name}</td>
-                    <td class="dataTable"><font color="gold">{Math.round(server.gold).toLocaleString()}g</font></td>
+                  <tr className="dataTable" key={server.name}>
+                    <td className="dataTable">{server.name}</td>
+                    <td className="dataTable"><font color="gold">{Math.round(server.gold).toLocaleString()}g</font></td>
                   </tr>
                 )}
               </tbody>

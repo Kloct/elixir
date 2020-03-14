@@ -12,7 +12,7 @@ const items = [
   {
     src: 'assets/TERA_ConceptArt(0).jpg',
     altText: 'Alpha v1.1',
-    tagLine: 'Welcome to the Heaven\'s Elixir Alpha! Check out the Change Log for more info.',
+    tagLine: 'Welcome to the Arborea Stock Exchange Alpha! Check out the Change Log for more info.',
     caption: 'Alpha v1.1'
   },
   {

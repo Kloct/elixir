@@ -1,5 +1,5 @@
 # Issues
 
-> Currently Tracked Issues/Feature Requests with Heavan's Elixir
+> Currently Tracked Issues/Feature Requests
 
-* User Inputs needs to be exact for player and item feilds
+ Empty

@@ -1,8 +1,12 @@
 # Change Log
 
-> A list of changes to date made to Heaven's Elixir
+> A list of changes to date
 
 ## Alpha
+
+### v1.2.1
+
+* Added backend filter and data validation
 
 ### v1.2
 

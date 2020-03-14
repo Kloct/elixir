@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import DataFormSellers from '../components/dataFormSellers';
 import '../App.css';
 import SellersTable from '../components/sellersTable';
@@ -11,8 +11,10 @@ export default class Sellers extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      sellersLoading:false,
-      sellersNull:true,
+      invalid:false,
+      notFound:false,
+      loading:false,
+      isnull:true,
       sellersData: {},
       sellers: []
     }
@@ -28,8 +30,10 @@ export default class Sellers extends React.Component {
   filtersSubmitted(filters){
     //started loading
     this.setState({
-      sellersNull:false,
-      sellersLoading:true,
+      invalid:false,
+      notFound:false,
+      isnull:false,
+      loading:true,
       sellersData: {}
     });
     console.log(filters)
@@ -42,20 +46,33 @@ export default class Sellers extends React.Component {
     .then(data => data.json())
     //done loading
     .then(data => {
-      this.setState({
-        sellersNull:false,
-        sellersLoading:false,
-        sellersData: {
-          filters,
-          revenue: data.revenue,
-          rank: data.rank,
-          percentage: data.percentage,
-          sellersTree: data.sellersTree,
-          sellersItems: data.sellersItems.map(item=>[item.string, {v: item.total, f: `<font color="gold">${Math.round(item.total).toLocaleString()}g</font>`}, item.quantity]),
-          quantities: data.quantities.map(hour=>[new Date(hour[0]*1000), hour[1]])
-        }
-      });
-      console.log(this.state)
+      if (data.invalid){
+        this.setState({
+          invalid: true,
+          loading: false,
+          isnull: true
+        })
+      } else if (data.notFound){
+        this.setState({
+          notFound: true,
+          loading: false,
+          isnull: true
+        })
+      } else {
+        this.setState({
+          isnull:false,
+          loading:false,
+          sellersData: {
+            filters,
+            revenue: data.revenue,
+            rank: data.rank,
+            percentage: data.percentage,
+            sellersTree: data.sellersTree,
+            sellersItems: data.sellersItems.map(item=>[item.string, {v: item.total, f: `<font color="gold">${Math.round(item.total).toLocaleString()}g</font>`}, item.quantity]),
+            quantities: data.quantities.map(hour=>[new Date(hour[0]*1000), hour[1]])
+          }
+        });
+      }
     });
   }
   
@@ -69,7 +86,9 @@ export default class Sellers extends React.Component {
         </Container>
         <br />
         <Container className="content">
-          <SellersTableWithLoading isLoading={this.state.sellersLoading} isnull={this.state.sellersNull} sellersData={this.state.sellersData}/>
+          {this.state.invalid?<em>Invalid Input!</em>:null}
+          {this.state.notFound?<em>No Results Found</em>:null}
+          <SellersTableWithLoading isLoading={this.state.loading} isnull={this.state.isnull} sellersData={this.state.sellersData}/>
         </Container>
       </Container>
     );
