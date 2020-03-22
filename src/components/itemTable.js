@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import { formatString } from '../utils';
+import { formatString } from '../helpers/utils';
 
 export default class ItemsDB extends React.Component {
   state = { items:this.props.items}
