@@ -127,6 +127,9 @@ div.google-visualization-table-div-page.gradient{
 .google-visualization-table-table td{
   border: none !important;
 }
+.google-visualization-table-table th{
+  border: none !important;
+}
 
 .nav-tabs {
   border: none !important;

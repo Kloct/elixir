@@ -5,6 +5,7 @@ import SellerTable from '../components/sellerTable';
 import '../App.css';
 import { Chart } from 'react-google-charts';
 import WithLoading from './WithLoading';
+import API from '../helpers/api'
 
 const InfoTableWithLoading = WithLoading(InfoTable);
 const ChartWithLoading = WithLoading(Chart);
@@ -14,9 +15,9 @@ export default class Rankings extends React.Component {
   componentDidMount(){
     this.setState({ serverInfoLoading:true })
     this.setState({ topNLoading:true })
-    fetch('/db/serverinfo')
-      .then(d => d.json())
-      .then(info => {
+    API.get('/db/serverinfo')
+      .then(({ data: info }) => {
+        console.log(info)
         this.setState({ info });
         this.setState({
           chartInfo: [
@@ -25,13 +26,15 @@ export default class Rankings extends React.Component {
           ]
         })
         this.setState({ serverInfoLoading:false })
-    })
-    fetch(`/db/topN`)
-      .then(data => data.json())
-      .then(top => { 
+      })
+      .catch(err=>(
+        console.error(err)
+      ))
+    API.get(`/db/topN`)
+      .then(({ data: top }) => { 
         this.setState({ top })
         this.setState({ topNLoading:false })
-    })
+      })
   }
 
   render() {
@@ -44,7 +47,7 @@ export default class Rankings extends React.Component {
               <h3 style={{align:'center'}}>Server Statistics</h3>
               <br/>
               <ChartWithLoading
-                isLoading={this.state.topNLoading}
+                isLoading={this.state.serverInfoLoading}
                 height="500px"
                 chartType="PieChart"
                 data={this.state.chartInfo}

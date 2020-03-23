@@ -4,6 +4,7 @@ import DataFormMarket from '../components/dataFormMarket';
 import '../App.css';
 import MarketTable from '../components/marketTable';
 import WithLoading from '../components/WithLoading';
+import API from '../helpers/api';
 
 const MarketTableWithLoading = WithLoading(MarketTable);
 
@@ -35,14 +36,9 @@ export default class Market extends React.Component {
       }
     });
     // API Call
-    fetch('/db/marketTable', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(filters)
-    })
-    .then(data => data.json())
+    API.post('/db/marketTable', filters)
     //done loading
-    .then(data => {
+    .then(({ data }) => {
       if (data.invalid){
         this.setState({
           invalid: true,

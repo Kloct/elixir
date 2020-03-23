@@ -4,6 +4,7 @@ import DataFormSellers from '../components/dataFormSellers';
 import '../App.css';
 import SellersTable from '../components/sellersTable';
 import WithLoading from '../components/WithLoading';
+import API from '../helpers/api';
 
 const SellersTableWithLoading = WithLoading(SellersTable);
 
@@ -20,9 +21,8 @@ export default class Sellers extends React.Component {
     }
   }
   componentDidMount(){
-    fetch(`/db/sellerList`)
-      .then(data => data.json())
-      .then(sellers => { 
+    API.get(`/db/sellerList`)
+      .then(({ data: sellers }) => { 
         this.setState({ sellers })
     })
   }
@@ -38,14 +38,9 @@ export default class Sellers extends React.Component {
     });
     console.log(filters)
     // API Call
-    fetch('/db/sellerTable', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(filters)
-    })
-    .then(data => data.json())
+    API.post('/db/sellerTable', filters)
     //done loading
-    .then(data => {
+    .then(({ data }) => {
       if (data.invalid){
         this.setState({
           invalid: true,

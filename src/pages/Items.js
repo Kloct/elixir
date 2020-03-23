@@ -4,6 +4,7 @@ import DataForm from '../components/dataForm';
 import '../App.css';
 import DataTable from '../components/dataTable';
 import WithLoading from '../components/WithLoading';
+import API from '../helpers/api'
 
 const DataTableWithLoading = WithLoading(DataTable);
 
@@ -20,9 +21,8 @@ export default class Items extends React.Component {
     }
   }
   componentDidMount(){
-    fetch(`/db/itemList`)
-      .then(data => data.json())
-      .then(items => { 
+    API.get(`/db/itemList`)
+      .then(({ data: items }) => { 
         this.setState({ items })
     })
   }
@@ -37,14 +37,9 @@ export default class Items extends React.Component {
       dataTable:{}
     });
     // API Call
-    fetch('/db/itemSalesHistory', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(filters)
-    })
-    .then(data => data.json())
+    API.post('/db/itemSalesHistory', filters)
     //done loading
-    .then(data => {
+    .then(({ data }) => {
       if (data.invalid){
         this.setState({
           invalid: true,
