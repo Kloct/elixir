@@ -1,41 +1,29 @@
 {
   "name": "elixir",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
-    "font-awesome": "^4.7.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-google-charts": "^3.0.15",
-    "react-helmet": "^5.2.1",
-    "react-markdown": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^3.4.1",
-    "reactstrap": "^8.4.1"
-  },
-  "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build; npm install -g serve"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "version": "1.0.0",
+  "description": "Express/React App Elixir",
   "engines": {
     "node": "13.x"
-  }
+  },
+  "scripts": {
+    "start": "node server",
+    "build": "cd react-ui/ && npm install && npm run build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kloct/elixir/tree/dev.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ]
 }
