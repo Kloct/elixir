@@ -9,6 +9,6 @@ export default axios.create({
   // baseURL: process.env.NODE_ENV === inDevelopment
   //   ? `http://localhost:5000/api/`
   //   : "http://example.com",
-  baseURL: "https://localhost:3001",
+  baseURL: "https://35.231.164.212",
   httpsAgent
 });
