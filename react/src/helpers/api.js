@@ -6,9 +6,8 @@ const httpsAgent = new https.Agent({ ca: fetch('src/server.cert').then(res=>res.
 // the baseURL should to point to localhost in development
 // and your domain in production
 export default axios.create({
-  // baseURL: process.env.NODE_ENV === inDevelopment
-  //   ? `http://localhost:5000/api/`
-  //   : "http://example.com",
-  baseURL: "https://35.231.164.212",
+  baseURL: process.env.NODE_ENV !== 'production'
+    ? `https://localhost:3001`
+    : "https://35.231.164.212",
   httpsAgent
 });
