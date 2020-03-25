@@ -17,7 +17,6 @@ export default class Rankings extends React.Component {
     this.setState({ topNLoading:true })
     API.get('/db/serverinfo')
       .then(({ data: info }) => {
-        console.log(info)
         this.setState({ info });
         this.setState({
           chartInfo: [
@@ -27,9 +26,6 @@ export default class Rankings extends React.Component {
         })
         this.setState({ serverInfoLoading:false })
       })
-      .catch(err=>(
-        console.error(err)
-      ))
     API.get(`/db/topN`)
       .then(({ data: top }) => { 
         this.setState({ top })

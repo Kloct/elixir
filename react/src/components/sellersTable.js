@@ -6,7 +6,6 @@ import {Row, Col } from 'reactstrap';
 export default class SellersTable extends React.Component {
   
   render() {
-    console.log(this.props.sellersData)
     return (
       <div>
         <Row>
@@ -63,7 +62,6 @@ export default class SellersTable extends React.Component {
             headerColor: '#ffffff', 
             background: '#232934',
             generateTooltip: (row, size, value) => {
-              console.log(size)
               return (
                 `<div style="background:black; padding:10px; color:white; border-radius: 10px">
                 Total Value: <font color="gold">${Math.round(size).toLocaleString()}g</font>

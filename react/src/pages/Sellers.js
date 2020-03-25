@@ -36,7 +36,6 @@ export default class Sellers extends React.Component {
       loading:true,
       sellersData: {}
     });
-    console.log(filters)
     // API Call
     API.post('/db/sellerTable', filters)
     //done loading
